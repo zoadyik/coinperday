@@ -100,6 +100,7 @@
         <th>24 hr blocks </th>
         <!-- <th>My hashrate (GH/s)</th> -->
 		<th>coin per day</th>
+		<th>coin per btc</th>
 		<th>THB per day</th>
       </tr>
     </thead>
@@ -121,6 +122,7 @@
         <th>24 hr blocks </th>
         <!-- <th>My hashrate (GH/s)</th> -->
     <th>coin per day</th>
+    <th>coin per btc</th>
     <th>THB per day</th>
       </tr>
     </thead>
@@ -168,6 +170,7 @@ function doAjax() {
  								+ "<td>  <span id='poolHashrate" + value.name + "'>" + value.hashrate/1000000000 + "</span> </td>"
  								+ "<td>  <span id='24h_blocks" + value.name + "'>" + value['24h_blocks']  + "</span> </td>"
  								+ "<td>  <span id='coinPerDay"+ value.name +"'> </span> </td>"
+ 								+ "<td>  <span id='coinPerBtc"+ value.name +"'> </span> </td>"
  								+ "<td>  <span id='thbPerDay"+ value.name +"'> </span> </td>"
  								+ "</tr>";
  								 $('#tbody').append(eachRow);
@@ -210,6 +213,7 @@ function doAjaxPhi() {
                 + "<td>  <span id='poolHashrate" + value.name + "'>" + value.hashrate/1000000000 + "</span> </td>"
                 + "<td>  <span id='24h_blocks" + value.name + "'>" + value['24h_blocks']  + "</span> </td>"
                 + "<td>  <span id='coinPerDay"+ value.name +"'> </span> </td>"
+                + "<td>  <span id='coinPerBtc"+ value.name +"'> </span> </td>"
                 + "<td>  <span id='thbPerDay"+ value.name +"'> </span> </td>"
                 + "</tr>";
                  $('#phiphiTable').append(eachRow);
@@ -270,11 +274,15 @@ function coinexchange() {
             success: function (data) {
               if ($.trim(data)){   
                 var coins = ["467", "297"];
-                    $.each(data, function(key, value) { 
-                     console.log(value[10]);
-
-                     // $('#btc').val(value.price_thb);
-            }); 
+                    console.log(data.result.length);
+                  //  $('#coinexchange').text(data.result[0].LastPrice);
+                    $.each(data.result, function(k,v) { 
+                   // console.log(v.LastPrice);
+                    if(v.MarketID == '467')
+                     $('#coinPerBtcVsync').text(v.LastPrice);
+                    if(v.MarketID == '297')
+                    $('#coinPerBtcSolaris').text(v.LastPrice);
+           			 }); 
 
                    }
 
@@ -297,27 +305,41 @@ coinexchange();
 setTimeout(doAjax, interval);
 setTimeout(coinmarketcap, interval);
 setTimeout(doAjaxPhi, interval);
+$('#coinPerBtcArgoCoin').text('0.0002');
+$('#coinPerBtcBithold').text('0.0000898');
 
+function totalCoins(coins, percentage){
+	coins = coins - coins * percentage;
+	return coins;
+}
 
 $(document).ready(function(){
 
     $('#myHasrateSkein').keyup(function(){
-    	var Argocoins = $('#blockRewardArgoCoin').text() * $('#24h_blocksArgoCoin').text() / ($('#poolHashrateArgoCoin').text() / $('#myHasrateSkein').val());
-    	var ArgocoinsConvertThaiBaht = Argocoins * 0.0002 * $('#btc').val();
+    	var Argocoins = $('#blockRewardArgoCoin').text() * $('#24h_blocksArgoCoin').text() / ($('#poolHashrateArgoCoin').text() / $('#myHasrateSkein').val()).toFixed(2);
+    	Argocoins =  totalCoins(Argocoins, 0.24);
+    	var ArgocoinsConvertThaiBaht = Argocoins * $('#coinPerBtcArgoCoin').text() * $('#btc').val();
         $('#coinPerDayArgoCoin').text(Argocoins.toFixed(2));
         $('#thbPerDayArgoCoin').text(ArgocoinsConvertThaiBaht.toFixed(2));
     });
     $('#myHasrateC11').keyup(function(){
     	var bitHoldCoins = $('#blockRewardBithold').text() * $('#24h_blocksBithold').text() / ($('#poolHashrateBithold').text() / $('#myHasrateC11').val()).toFixed(2);
-    	var bitHoldCoinsConvertThaiBaht = bitHoldCoins * 0.0000898 * $('#btc').val();
+    	var bitHoldCoinsConvertThaiBaht = bitHoldCoins * $('#coinPerBtcBithold').text() * $('#btc').val();
+    	bitHoldCoins = totalCoins(bitHoldCoins, 0.24);
         $('#coinPerDayBithold').text(bitHoldCoins.toFixed(2));
         $('#thbPerDayBithold').text(bitHoldCoinsConvertThaiBaht.toFixed(2));
     });
         $('#myHasrateXevan').keyup(function(){
       var vsxCoins = $('#blockRewardVsync').text() * $('#24h_blocksVsync').text() / ($('#poolHashrateVsync').text() / $('#myHasrateXevan').val()).toFixed(2);
-      var vsxCoinsConvertThaiBaht = vsxCoins * 0.0000898 * $('#btc').val();
-        $('#coinPerDayBithold').text(bitHoldCoins.toFixed(2));
-        $('#thbPerDayBithold').text(bitHoldCoinsConvertThaiBaht.toFixed(2));
+      var vsxCoinsConvertThaiBaht = vsxCoins * $('#coinPerBtcVsync').text() * $('#btc').val();
+        $('#coinPerDayVsync').text(vsxCoins.toFixed(2));
+        $('#thbPerDayVsync').text(vsxCoinsConvertThaiBaht.toFixed(2));
+    });
+                $('#myHasrateXevan').keyup(function(){
+      var SolarisCoins = $('#blockRewardSolaris').text() * $('#24h_blocksSolaris').text() / ($('#poolHashrateSolaris').text() / $('#myHasrateXevan').val()).toFixed(2);
+      var SolarisCoinsConvertThaiBaht = SolarisCoins * $('#coinPerBtcSolaris').text() * $('#btc').val();
+        $('#coinPerDaySolaris').text(SolarisCoins.toFixed(2));
+        $('#thbPerDaySolaris').text(SolarisCoinsConvertThaiBaht.toFixed(2));
     });
 
 
