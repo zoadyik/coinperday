@@ -32,7 +32,7 @@ if (!is_null($events['events'])) {
                     # code...
                     break;
             }
-            $obj  = json_decode($json);
+            $obj  = json_decode(str_replace('<!-- Ok --><!-- Ok 1-->', '', $json));
 
             if (empty($obj)) {
                 $result_text = "no data\n วิธีใช้ poolName walletAddress55555" . $json;
