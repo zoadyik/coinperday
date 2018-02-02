@@ -165,7 +165,7 @@ function doAjax() {
                     $.each(data, function(key, value) { 
                       if(value.name == "ArgoCoin" || value.name == "Bithold")
                       {
-                          blockReward = (value.name == "ArgoCoin") ? "59.38" : "37"
+                          blockReward = (value.name == "ArgoCoin") ? "59.079" : "37"
                           eachRow = "<tr>"
                 + "<td>" + value.name + "</td>"
                 + "<td>" + value.algo + "</td>"
