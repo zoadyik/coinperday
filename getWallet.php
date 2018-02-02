@@ -24,8 +24,8 @@ if (!is_null($events['events'])) {
                     $json = str_replace('"unsold":', ' "unsold": ""', $json);
                     break;
                 case "phiphi":
-                    $bad = ["<!-- Ok --><!-- Ok 1-->", "<!-- Ok --><!-- Ok 2-->",'"unsold": ,']
-                    $good = ["","", ' "unsold": "" ,']
+                    $bad = ["<!-- Ok --><!-- Ok 1-->", "<!-- Ok --><!-- Ok 2-->",'"unsold": ,'];
+                    $good = ["","", ' "unsold": "" ,'];
                     header('Content-type: application/json');
                     $json = (file_get_contents('http://www.phi-phi-pool.net/api/walletEx?address=' . rawurlencode($text_ex[1])));
                     $json = str_replace($bad, $good, $json);
