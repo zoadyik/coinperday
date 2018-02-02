@@ -16,7 +16,7 @@ if (!is_null($events['events'])) {
             // Get replyToken
             $replyToken = $event['replyToken'];
 
-            $text_ex = explode(" ", $messages);
+            $text_ex = explode(" ", $text);
 
             switch ($text_ex[0]) {
                 case "protopool":
