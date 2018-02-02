@@ -37,13 +37,18 @@ if (!is_null($events['events'])) {
             $obj  = json_decode(str_replace('<!-- Ok --><!-- Ok 1-->', '', $json));
 
             if (empty($obj)) {
-                $result_text = "no data\n วิธีใช้ poolName walletAddress55555" . $json;
+                $result_text = "no data\n" . $json;
             } else {
                 $result_text = "currency : " . $obj->currency . "\nbalance : " . $obj->balance . "\nunpaid : " . $obj->unpaid . "\npaid 24 hr : " . $obj->paid24h . "\ntotal : " . $obj->total;
             }
 
         } else {
-            $result_text = "no data\n วิธีใช้ poolName walletAddress";
+            $result_text = "pool ที่รองรับ \n
+            pool  : คำสั่ง
+            1. Phi-Phi-pool : phiphi\n
+            2. Proto Pool : protopool\n
+            วิธีใช้งาน\n
+            ใส่ชื่อ Pool เว้นวรรค ตามด้วย wallet เช่น phiphi abc12345";
         }
         // Build message to reply back
         $messages = [
