@@ -21,15 +21,17 @@ if (!is_null($events['events'])) {
             switch ($text_ex[0]) {
                 case "protopool":
                     $json = (file_get_contents('https://protopool.net/api/wallet?address=' . rawurlencode($text_ex[1])));
+                    $json = str_replace('"unsold":', ' "unsold": ""', $json);
                     break;
                 case "phiphi":
+                    header('Content-type: application/json');
                     $json = (file_get_contents('http://www.phi-phi-pool.net/api/walletEx?address=' . rawurlencode($text_ex[1])));
+                    $json = str_replace('<!-- Ok --><!-- Ok 1-->', '', $json);
                     break;
                 default:
                     # code...
                     break;
             }
-            $json = str_replace('"unsold":', ' "unsold": ""', $json);
             $obj  = json_decode($json);
 
             if (empty($obj)) {
