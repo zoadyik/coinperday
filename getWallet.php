@@ -30,7 +30,7 @@ if (!is_null($events['events'])) {
                 $result_text = "no data";
               }
               else
-             $result_text = "currency : ".$obj->currency."\balance : ".$obj->balance."\unpaid : ".$obj->unpaid."\paid 24 hr : ".$obj->paid24h."\ntotal : ".$obj->total;
+             $result_text = "currency : ".$obj->currency."\nbalance : ".$obj->balance."\nunpaid : ".$obj->unpaid."\npaid 24 hr : ".$obj->paid24h."\ntotal : ".$obj->total;
              echo $result_text;
 
                 // Build message to reply back
