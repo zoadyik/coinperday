@@ -21,12 +21,30 @@ if (!is_null($events['events'])) {
         'type' => 'text',
         'text' => $text
       ];
+      $text_ex= explode(" ", $messages);
+
+                if($text_ex[0] == "protopool")
+          {
+            $ch1 = curl_init();
+            curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch1, CURLOPT_URL, 'https://protopool.net/api/wallet?address="'.rawurlencode($text_ex[1]));
+            $result1 = curl_exec($ch1);
+            curl_close($ch1);
+
+            $obj = json_decode($result1, true);
+
+            foreach($obj as $key => $val){
+              
+             $result_text = "currency : ".$val['currency']."\balance : ".$val['balance']."\unpaid : ".$val['unpaid']."\paid 24 hr : ".$val['paid24h']."\ntotal : ".$val['total'];
+
+          }
 
       // Make a POST Request to Messaging API to reply to sender
       $url = 'https://api.line.me/v2/bot/message/reply';
       $data = [
         'replyToken' => $replyToken,
-        'messages' => [$messages],
+        'messages' => [$result_text],
       ];
       $post = json_encode($data);
       $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
