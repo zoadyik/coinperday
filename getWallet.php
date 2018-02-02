@@ -35,7 +35,7 @@ if (!is_null($events['events'])) {
             $obj  = json_decode($json);
 
             if (empty($obj)) {
-                $result_text = "no data\n วิธีใช้ poolName walletAddress";
+                $result_text = "no data\n วิธีใช้ poolName walletAddress55555";
             } else {
                 $result_text = "currency : " . $obj->currency . "\nbalance : " . $obj->balance . "\nunpaid : " . $obj->unpaid . "\npaid 24 hr : " . $obj->paid24h . "\ntotal : " . $obj->total;
             }
