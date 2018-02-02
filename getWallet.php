@@ -38,6 +38,8 @@ if (!is_null($events['events'])) {
                 $result_text = "currency : " . $obj->currency . "\nbalance : " . $obj->balance . "\nunpaid : " . $obj->unpaid . "\npaid 24 hr : " . $obj->paid24h . "\ntotal : " . $obj->total;
             }
 
+        } else {
+            $result_text = "no data\n วิธีใช้ poolName walletAddress";
         }
         // Build message to reply back
         $messages = [
@@ -65,6 +67,5 @@ if (!is_null($events['events'])) {
 
         echo $result . "\r\n";
     }
-}
 }
     echo "OK";
