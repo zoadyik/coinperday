@@ -23,12 +23,12 @@ if (!is_null($events['events'])) {
       ];
       $text_ex= explode(" ", $messages);
 
-                if($text_ex[0] == "protopool")
-          {
+//              if($text_ex[0] == "protopool")
+          //{
             $ch1 = curl_init();
             curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch1, CURLOPT_URL, 'https://protopool.net/api/wallet?address="'.rawurlencode($text_ex[1]));
+            curl_setopt($ch1, CURLOPT_URL, 'https://protopool.net/api/wallet?address="'.rawurlencode(messages));
             $result1 = curl_exec($ch1);
             curl_close($ch1);
 
