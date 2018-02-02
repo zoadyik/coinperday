@@ -30,6 +30,16 @@ if (!is_null($events['events'])) {
                 }
 
                 echo $result_text;
+            } elseif ($text_ex[0] == 'phiphi') {
+                $json = (file_get_contents('http://www.phi-phi-pool.net/api/walletEx?address=' . rawurlencode($text_ex[1])));
+                $json = str_replace('"unsold":', ' "unsold": ""', $json);
+                $obj  = json_decode($json);
+
+                if (empty($obj)) {
+                    $result_text = "no data";
+                } else {
+                    $result_text = "currency : " . $obj->currency . "\nbalance : " . $obj->balance . "\nunpaid : " . $obj->unpaid . "\npaid 24 hr : " . $obj->paid24h . "\ntotal : " . $obj->total;
+                }
             } else {
                 $result_text = "no data\n วิธีใช้ poolName walletAddress";
             }
