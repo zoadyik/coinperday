@@ -7,8 +7,8 @@ use \Statickidz\GoogleTranslate;
 
 $logger = new Logger('LineBot');
 $logger->pushHandler(new StreamHandler('php://stderr', Logger::DEBUG));
-$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient("bwmo+NkxJAkK+XoT9LzMlkNVNwXDOu9UwyTBYXNznwNlSbXhzUD5YibMk/vo/PixOSiitVdrAHL4kpXh+yGZI0P0eq3ZFQdn36cSiGqIX7yo19H8O5SbSaEAnTqo/dl0GoP3nbCcwdvC9x7RYgwA3QdB04t89/1O/w1cDnyilFU=");
-$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => "9258993caf61d0d4ec1482e073dbfbc2"]);
+$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($_ENV["LINEBOT_ACCESS_TOKEN"]);
+$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $_ENV["LINEBOT_CHANNEL_SECRET"]]);
 $signature = $_SERVER['HTTP_' . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
 
 try {
