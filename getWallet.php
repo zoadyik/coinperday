@@ -31,7 +31,7 @@ if (!is_null($events['events'])) {
 
                 echo $result_text;
             } else {
-                $result_text = "no data";
+                $result_text = "no data\n วิธีใช้ poolName walletAddress";
             }
             // Build message to reply back
             $messages = [
