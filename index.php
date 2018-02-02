@@ -273,14 +273,12 @@ function coinexchange() {
             async: false, 
             success: function (data) {
               if ($.trim(data)){   
-                var coins = ["467", "297"];
-                    console.log(data.result.length);
                   //  $('#coinexchange').text(data.result[0].LastPrice);
                     $.each(data.result, function(k,v) { 
                    // console.log(v.LastPrice);
-                    if(v.MarketID == '467')
+                    if(v.MarketID == '467') //vsx
                      $('#coinPerBtcVsync').text(v.LastPrice);
-                    if(v.MarketID == '297')
+                    if(v.MarketID == '297') //slr
                     $('#coinPerBtcSolaris').text(v.LastPrice);
            			 }); 
 
@@ -298,15 +296,47 @@ function coinexchange() {
             }
     });
 }
+
+function getSouthxchangePrice() {
+    $.ajax({
+            type: 'GET',
+            url: 'https://www.southxchange.com/api/prices', //https://phi-phi-pool.net/api/currencies  'https://protopool.net/api/currencies'
+            data: $(this).serialize(),
+            dataType: 'json',
+            async: false, 
+            success: function (data) {
+              if ($.trim(data)){   
+                  //  $('#coinexchange').text(data.result[0].LastPrice);
+                    $.each(data, function(k,v) { 
+                    if(v.Market == 'BHD/BTC')
+                     $('#coinPerBtcBithold').text(v.Bid);
+
+           			 }); 
+
+                   }
+
+                   else
+                   {
+        //  $('#test').text("NO DATA");
+                   }
+
+            },
+            complete: function (data) {
+                    // Schedule the next
+                    setTimeout(getSouthxchangePrice, interval);
+            }
+    });
+}
 doAjax();
 coinmarketcap();
 doAjaxPhi();
 coinexchange();
+getSouthxchangePrice();
 setTimeout(doAjax, interval);
 setTimeout(coinmarketcap, interval);
 setTimeout(doAjaxPhi, interval);
 $('#coinPerBtcArgoCoin').text('0.0002');
-$('#coinPerBtcBithold').text('0.0000898');
+//$('#coinPerBtcBithold').text('0.0000898');
 
 function totalCoins(coins, percentage){
 	coins = coins - coins * percentage;
