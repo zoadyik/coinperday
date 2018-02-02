@@ -1,0 +1,9 @@
+{
+    "require": {
+        "php": "~7.0.0",
+        "linecorp/line-bot-sdk": "^1.6",
+        "monolog/monolog": "^1.22",
+        "statickidz/php-google-translate-free": "^1.0"
+
+    }
+}
