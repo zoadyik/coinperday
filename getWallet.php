@@ -19,7 +19,7 @@ if (!is_null($events['events'])) {
             $text_ex = explode(" ", $messages);
 
             if ($text_ex[0] == "protopool") {
-                $json = (file_get_contents('https://protopool.net/api/wallet?address=' . rawurlencode($text[1])));
+                $json = (file_get_contents('https://protopool.net/api/wallet?address=' . rawurlencode($text_ex[1])));
                 $json = str_replace('"unsold":', ' "unsold": ""', $json);
                 $obj  = json_decode($json);
 
