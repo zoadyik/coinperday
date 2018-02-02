@@ -21,20 +21,17 @@ if (!is_null($events['events'])) {
 
 //              if($text_ex[0] == "protopool")
           //{
-            $ch1 = curl_init();
-            curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch1, CURLOPT_URL, 'https://protopool.net/api/wallet?address='.rawurlencode($text));
-            $result1 = curl_exec($ch1);
-            curl_close($ch1);
+            $json = (file_get_contents('https://protopool.net/api/wallet?address='.rawurlencode($text))));
+            $json = str_replace('"unsold":', ' "unsold": ""', $json);
+            $obj = json_decode($json);
 
-            $obj = json_decode($result1, true);
-
-            foreach($obj as $key => $val){
-              
-             $result_text = "currency : ".$val['currency']."\balance : ".$val['balance']."\unpaid : ".$val['unpaid']."\paid 24 hr : ".$val['paid24h']."\ntotal : ".$val['total'];
-
-          }
+              if(empty($obj))
+              {
+                $result_text = "no data";
+              }
+              else
+             $result_text = "currency : ".$obj->currency."\balance : ".$obj->balance."\unpaid : ".$obj->unpaid."\paid 24 hr : ".$obj->paid24h."\ntotal : ".$obj->total;
+             echo $result_text;
 
                 // Build message to reply back
       $messages = [
