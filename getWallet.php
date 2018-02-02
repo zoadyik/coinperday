@@ -19,8 +19,8 @@ if (!is_null($events['events'])) {
 
       $text_ex= explode(" ", $messages);
 
-//              if($text_ex[0] == "protopool")
-          //{
+              if($text_ex[0] == "protopool")
+          {
             $json = (file_get_contents('https://protopool.net/api/wallet?address='.rawurlencode($text)));
             $json = str_replace('"unsold":', ' "unsold": ""', $json);
             $obj = json_decode($json);
@@ -32,7 +32,11 @@ if (!is_null($events['events'])) {
               else
              $result_text = "currency : ".$obj->currency."\nbalance : ".$obj->balance."\nunpaid : ".$obj->unpaid."\npaid 24 hr : ".$obj->paid24h."\ntotal : ".$obj->total;
              echo $result_text;
+           }
 
+           else{
+            $result_text = "no data";
+           }
                 // Build message to reply back
       $messages = [
         'type' => 'text',
