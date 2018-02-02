@@ -1,4 +1,4 @@
-<?php header('Access-Control-Allow-Origin: *'); ?>
+<?php header('Access-Control-Allow-Origin: *');?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -141,7 +141,7 @@
 /*$json = file_get_contents('http://protopool.net/api/currencies');
 $obj = json_decode($json,true);
 foreach($obj as $key => $val){
-  //echo $val['name'];
+//echo $val['name'];
 }*/
 ?>
 
@@ -155,11 +155,11 @@ function doAjax() {
             url: 'protopool.php', //https://phi-phi-pool.net/api/currencies  'https://protopool.net/api/currencies'
             data: $(this).serialize(),
             dataType: 'json',
-            async: false, 
+            async: false,
             success: function (data, response) {
-              if ($.trim(data)){   
+              if ($.trim(data)){
               $('#tbody').empty();
-                    $.each(data, function(key, value) { 
+                    $.each(data, function(key, value) {
                       if(value.name == "ArgoCoin" || value.name == "Bithold")
                       {
                           blockReward = (value.name == "ArgoCoin") ? "59.079" : "37"
@@ -175,7 +175,7 @@ function doAjax() {
                 + "</tr>";
                  $('#tbody').append(eachRow);
                 }
-                }); 
+                });
 
                    }
 
@@ -198,11 +198,11 @@ function doAjaxPhi() {
             url: 'phiphipool.php', //https://phi-phi-pool.net/api/currencies  'https://protopool.net/api/currencies'
             data: $(this).serialize(),
             dataType: 'json',
-            async: false, 
+            async: false,
             success: function (data, response) {
-              if ($.trim(data)){   
+              if ($.trim(data)){
               $('#phiphiTable').empty();
-                    $.each(data, function(key, value) { 
+                    $.each(data, function(key, value) {
                       if(value.name == "Vsync" || value.name == "Solaris")
                       {
                           blockReward = (value.name == "Vsync") ? "40" : "1"
@@ -218,7 +218,7 @@ function doAjaxPhi() {
                 + "</tr>";
                  $('#phiphiTable').append(eachRow);
                 }
-                }); 
+                });
 
                    }
 
@@ -241,13 +241,13 @@ function coinmarketcap() {
             url: 'coinmarketcap.php', //https://phi-phi-pool.net/api/currencies  'https://protopool.net/api/currencies'
             data: $(this).serialize(),
             dataType: 'json',
-            async: false, 
+            async: false,
             success: function (data, response) {
-              if ($.trim(data)){   
-                    $.each(data, function(key, value) { 
+              if ($.trim(data)){
+                    $.each(data, function(key, value) {
                     //console.log(value);
                       $('#btc').val(value.price_thb);
-            }); 
+            });
 
                    }
 
@@ -270,11 +270,11 @@ function coinexchange() {
             url: 'coinexchange.php', //https://phi-phi-pool.net/api/currencies  'https://protopool.net/api/currencies'
             data: $(this).serialize(),
             dataType: 'json',
-            async: false, 
+            async: false,
             success: function (data) {
-              if ($.trim(data)){   
+              if ($.trim(data)){
                   //  $('#coinexchange').text(data.result[0].LastPrice);
-                    $.each(data.result, function(k,v) { 
+                    $.each(data.result, function(k,v) {
                    // console.log(v.LastPrice);
                     if(v.MarketID == '467') //vsx
                      $('#coinPerBtcVsync').text(v.LastPrice);
@@ -282,7 +282,7 @@ function coinexchange() {
                     $('#coinPerBtcSolaris').text(v.LastPrice);
 
                   $('#coinPerBtcArgoCoin').text('0.00008800');
-                 }); 
+                 });
 
                    }
 
@@ -305,15 +305,15 @@ function getSouthxchangePrice() {
             url: 'https://www.southxchange.com/api/prices', //https://phi-phi-pool.net/api/currencies  'https://protopool.net/api/currencies'
             data: $(this).serialize(),
             dataType: 'json',
-            async: false, 
+            async: false,
             success: function (data) {
-              if ($.trim(data)){   
+              if ($.trim(data)){
                   //  $('#coinexchange').text(data.result[0].LastPrice);
-                    $.each(data, function(k,v) { 
+                    $.each(data, function(k,v) {
                     if(v.Market == 'BHD/BTC')
                      $('#coinPerBtcBithold').text(v.Bid);
 
-                 }); 
+                 });
 
                    }
 
