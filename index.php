@@ -281,7 +281,7 @@ function coinexchange() {
                     if(v.MarketID == '297') //slr
                     $('#coinPerBtcSolaris').text(v.LastPrice);
 
-                  $('#coinPerBtcArgoCoin').text('0.00008800');
+                  $('#coinPerBtcArgoCoin').text('0.00019990');
                  });
 
                    }
