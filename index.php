@@ -376,6 +376,10 @@ $(document).ready(function(){
 
 
 });
+var http = require("http");
+setInterval(function() {
+    http.get("http://stark-fjord-52435.herokuapp.com");
+}, 300000); // every 5 minutes (300000)
 
 </script>
 
