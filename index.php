@@ -352,7 +352,7 @@ $(document).ready(function(){
 
   $('#myHasrateSkein').keyup(function(){
     var Argocoins = $('#blockRewardArgoCoin').text() * $('#24h_blocksArgoCoin').text() / ($('#poolHashrateArgoCoin').text() / $('#myHasrateSkein').val()).toFixed(2);
-    Argocoins =  totalCoins(Argocoins, 0.24);
+    //Argocoins =  totalCoins(Argocoins, 0.24);
     var ArgocoinsConvertThaiBaht = Argocoins * $('#coinPerBtcArgoCoin').text() * $('#btc').val();
     $('#coinPerDayArgoCoin').text(Argocoins.toFixed(2));
     $('#thbPerDayArgoCoin').text(ArgocoinsConvertThaiBaht.toFixed(2));
@@ -360,13 +360,13 @@ $(document).ready(function(){
   $('#myHasrateC11').keyup(function(){
     var bitHoldCoins = $('#blockRewardBithold').text() * $('#24h_blocksBithold').text() / ($('#poolHashrateBithold').text() / $('#myHasrateC11').val()).toFixed(2);
     var bitHoldCoinsConvertThaiBaht = bitHoldCoins * $('#coinPerBtcBithold').text() * $('#btc').val();
-    bitHoldCoins = totalCoins(bitHoldCoins, 0.24);
+   // bitHoldCoins = totalCoins(bitHoldCoins, 0.24);
     $('#coinPerDayBithold').text(bitHoldCoins.toFixed(2));
     $('#thbPerDayBithold').text(bitHoldCoinsConvertThaiBaht.toFixed(2));
 
     var stipendCoins = $('#blockRewardStipend').text() * $('#24h_blocksStipend').text() / ($('#poolHashrateStipend').text() / $('#myHasrateC11').val()).toFixed(2);
     var stipendCoinsConvertThaiBaht = stipendCoins * $('#coinPerBtcStipend').text() * $('#btc').val();
-    stipendCoins = totalCoins(stipendCoins, 0.24);
+  //  stipendCoins = totalCoins(stipendCoins, 0.24);
     $('#coinPerDayStipend').text(stipendCoins.toFixed(2));
     $('#thbPerDayStipend').text(stipendCoinsConvertThaiBaht.toFixed(2));
   });
