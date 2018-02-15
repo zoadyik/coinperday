@@ -160,9 +160,11 @@ function doAjax() {
               if ($.trim(data)){
               $('#tbody').empty();
                     $.each(data, function(key, value) {
-                      if(value.name == "ArgoCoin" || value.name == "Bithold")
+                      if(value.name == "ArgoCoin" || value.name == "Bithold" || value.name == "Stipend")
                       {
-                          blockReward = (value.name == "ArgoCoin") ? "59.079" : "37"
+                          blockReward = 
+                          (value.name == "ArgoCoin") ? "56.907" : 
+                          (value.name == "Bithold" ? "37" : "15");
                           eachRow = "<tr>"
                 + "<td>" + value.name + "</td>"
                 + "<td>" + value.algo + "</td>"
